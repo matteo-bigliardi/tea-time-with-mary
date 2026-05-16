@@ -6,6 +6,53 @@ Log cronologico delle sessioni di lavoro con Claude Code. Ogni sessione contiene
 
 ---
 
+## Sessione 2 — 2026-05-16 — Setup repo + identità del blog
+
+### Obiettivo
+Appiattire la struttura, inizializzare git, predisporre il sito in italiano con vibes cute/femminili a tema recensioni di ristoranti.
+
+### Cosa è stato fatto
+- **Appiattimento directory:** spostato tutto il contenuto di `fuwari-main/fuwari-main/` alla root `FoodBlogApp/`. Rimossa la cartella `fuwari-main/` vuota.
+- **Git:** `git init -b main`, creato `.gitignore` (dist, node_modules, .astro, pagefind output, env, IDE), primo commit con tutto il template + cartella `.claude/`.
+- **Traduzione italiana i18n:**
+  - Creato `src/i18n/languages/it.ts` (tono "Autrice" al femminile).
+  - Registrato `it` e `it_it` nella mappa di `src/i18n/translation.ts`.
+- **`src/config.ts` personalizzato:**
+  - `title: "Tavola Rosa"`, `subtitle: "Recensioni di ristoranti, con dolcezza"`
+  - `lang: "it"`
+  - `themeColor.hue: 340` (rosa cipria)
+  - Navbar: rimosso link GitHub (lasciati Home/Archive/About)
+  - Profilo: nome/bio placeholder, social Instagram + TikTok come placeholder (al posto di Twitter/Steam/GitHub demo)
+- **`.claude/CLAUDE.md` aggiornato:** struttura piatta, file chiave aggiornati con stato attuale, TODO rivisto.
+
+### Decisioni
+- **Nome provvisorio del sito:** "Tavola Rosa" — utente può sostituirlo subito modificando `src/config.ts:11`.
+- **Hue 340 (rosa cipria):** scelto come punto di partenza per le vibes femminili. Picker tema lasciato attivo (`fixed: false`), così l'utente può provare valori vicini live.
+- **Social:** Instagram + TikTok come default per un food blog (più rilevanti di Twitter/GitHub).
+- **Tono i18n al femminile:** "Autrice" invece di "Autore" — riflette la voce del blog.
+- **`site` URL in `astro.config.mjs`:** NON modificato (ancora `https://fuwari.vercel.app/`), in attesa del dominio definitivo.
+- **Post demo Fuwari:** lasciati nel repo per ora (utili come riferimento di sintassi markdown estesa). Da eliminare al primo articolo reale.
+
+### Stato del progetto a fine sessione
+- Repo git inizializzato su `main` con un commit.
+- Struttura piatta, pronta a `pnpm install`.
+- Sito configurato in italiano, palette rosa, identità "Tavola Rosa".
+- Nessuna dipendenza ancora installata. `pnpm dev` non ancora lanciato.
+
+### Problemi aperti / domande per l'utente
+- Confermare il nome del sito ("Tavola Rosa" o altro?).
+- Nome reale dell'autrice + bio + link social effettivi (Instagram/TikTok username).
+- Eventuale dominio per `astro.config.mjs`.
+- Vuoi che lo schema delle recensioni includa campi extra (rating, indirizzo, prezzo, tipo cucina)? In quel caso si modifica `src/content/config.ts`.
+
+### Prossimi passi suggeriti
+1. `pnpm install` e `pnpm dev` per verificare che tutto giri.
+2. Sostituire avatar/banner/favicon con asset a tema.
+3. Personalizzare `about.md` e creare la prima recensione vera.
+4. Decidere schema custom per le recensioni.
+
+---
+
 ## Sessione 1 — 2026-05-16 — Setup contesto di progetto
 
 ### Obiettivo

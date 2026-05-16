@@ -4,39 +4,50 @@ Questo file fornisce a Claude Code il contesto persistente del progetto. Va aggi
 
 ## Obiettivo del progetto
 
-Costruire **FoodBlogApp**, un blog statico a tema food, partendo dal template [Fuwari](https://github.com/saicaca/fuwari) scaricato da GitHub.
-
-Stato attuale: template scaricato, non ancora personalizzato. Non è ancora un repository git.
+Costruire **FoodBlogApp** (titolo del sito provvisorio: *"Tavola Rosa"*), un blog statico in italiano di **recensioni di ristoranti**, con vibes *cute e femminili* (palette rosa cipria, tono di voce caldo), partendo dal template [Fuwari](https://github.com/saicaca/fuwari).
 
 ## Struttura della directory
 
-Il template è attualmente innestato due livelli sotto la root:
+Template appiattito alla root del progetto. Repository git inizializzato (branch `main`).
 
 ```
-FoodBlogApp/                       ← working directory
-├── .claude/                       ← contesto Claude (questa cartella)
+FoodBlogApp/                       ← working directory + git root
+├── .claude/
 │   ├── CLAUDE.md                  ← questo file
 │   └── SESSION_NOTES.md           ← log per sessione
-└── fuwari-main/
-    └── fuwari-main/               ← root effettiva del template Fuwari
-        ├── README.md
-        ├── package.json
-        ├── astro.config.mjs
-        ├── src/
-        │   ├── config.ts          ← configurazione sito (titolo, profilo, navbar...)
-        │   ├── content/posts/     ← articoli markdown
-        │   ├── content/spec/about.md
-        │   ├── components/        ← componenti Astro/Svelte
-        │   ├── layouts/
-        │   ├── pages/
-        │   ├── styles/
-        │   ├── i18n/              ← traduzioni UI
-        │   └── plugins/           ← plugin remark/rehype custom
-        ├── public/favicon/
-        └── scripts/new-post.js
-```
-
-**Da decidere:** se appiattire l'innesto (spostare i file di `fuwari-main/fuwari-main/` alla root di `FoodBlogApp/`) prima di iniziare le personalizzazioni. Consigliato sì, per evitare percorsi scomodi.
+├── .gitignore
+├── README.md                      ← README originale di Fuwari
+├── package.json                   ← pnpm, Astro 5
+├── astro.config.mjs               ← config Astro (site URL, integrazioni, plugin markdown)
+├── biome.json
+├── tailwind.config.cjs
+├── tsconfig.json
+├── svelte.config.js
+├── postcss.config.mjs
+├── pagefind.yml
+├── frontmatter.json
+├── vercel.json
+├── public/favicon/
+├── scripts/new-post.js
+└── src/
+    ├── config.ts                  ← sito, navbar, profilo (PERSONALIZZATO)
+    ├── content/
+    │   ├── config.ts              ← schema collections
+    │   ├── posts/                 ← articoli .md (ancora i demo Fuwari)
+    │   └── spec/about.md
+    ├── components/                ← componenti Astro + Svelte
+    ├── layouts/
+    ├── pages/                     ← [...page].astro, archive, about, rss, robots, posts/[...slug]
+    ├── styles/                    ← main.css, markdown.css, variables.styl ...
+    ├── i18n/
+    │   ├── translation.ts         ← mappa lang → traduzione (it registrato)
+    │   ├── i18nKey.ts
+    │   └── languages/             ← en, es, id, it, ja, ko, th, tr, vi, zh_CN, zh_TW
+    ├── plugins/                   ← remark/rehype custom + expressive-code
+    ├── assets/images/             ← avatar e banner demo (da sostituire)
+    ├── constants/
+    ├── utils/
+    └── types/config.ts            ← tipi SiteConfig / ProfileConfig / NavBarConfig
 
 ## Stack tecnico
 
@@ -52,7 +63,7 @@ FoodBlogApp/                       ← working directory
 
 ## Comandi principali
 
-Tutti da eseguire nella root del template (per ora `fuwari-main/fuwari-main/`):
+Tutti da eseguire nella root del progetto (`FoodBlogApp/`):
 
 | Comando | Cosa fa |
 |---|---|
@@ -66,13 +77,13 @@ Tutti da eseguire nella root del template (per ora `fuwari-main/fuwari-main/`):
 
 ## File chiave da personalizzare
 
-1. **`src/config.ts`** — titolo sito, sottotitolo, lingua, theme color, banner, navbar, profilo (avatar/nome/bio/social), licenza.
-2. **`astro.config.mjs`** — `site` URL (necessario per deploy/sitemap/RSS).
-3. **`src/content/spec/about.md`** — pagina "About".
-4. **`src/content/posts/`** — articoli demo da eliminare/sostituire.
-5. **`src/assets/images/`** — avatar e banner demo.
-6. **`public/favicon/`** — favicon (light/dark).
-7. **`src/i18n/`** — eventuali traduzioni (se si vuole UI in italiano, valutare se esiste `it.ts` o se crearne uno).
+1. **`src/config.ts`** — già personalizzato: titolo "Tavola Rosa", `lang: "it"`, `hue: 340` (rosa cipria), navbar senza link GitHub, profilo con placeholder Instagram/TikTok. Nome/bio/social ancora placeholder.
+2. **`astro.config.mjs`** — `site` ancora puntato a `https://fuwari.vercel.app/`, da cambiare prima del deploy.
+3. **`src/content/spec/about.md`** — pagina "Chi sono", ancora il testo demo Fuwari.
+4. **`src/content/posts/`** — contiene i post demo Fuwari (draft, expressive-code, markdown, markdown-extended, video, guide). Da eliminare quando si inizia a pubblicare.
+5. **`src/assets/images/demo-avatar.png` e `demo-banner.png`** — da sostituire con asset a tema food/rosa.
+6. **`public/favicon/`** — favicon Fuwari di default, da sostituire.
+7. **`src/i18n/languages/it.ts`** — traduzione italiana creata e registrata in `translation.ts` (alias `it`, `it_it`). Tono "Autrice" al femminile.
 
 ## Frontmatter dei post
 
@@ -91,17 +102,19 @@ lang: it    # solo se differisce dalla lingua del sito
 
 ## Convenzioni di lavoro
 
-- Le risposte e i commit messages sono in **italiano** (preferenza utente).
-- Non ancora un git repo: valutare `git init` prima delle modifiche sostanziali.
-- Prima di modifiche grosse al template, considerare di flatten della cartella nidificata.
+- Le risposte e i commit messages sono in **italiano**.
+- Tono di voce del sito: caldo, femminile, accogliente — vibes "cute".
+- Palette rosa cipria (hue 340). Se si vuole più caldo/saturo provare 345-350, più tenue 335.
+- Lingua del sito: italiano. Tradurre eventuali nuove chiavi i18n anche in `it.ts`.
 
 ## TODO / prossimi passi suggeriti
 
-- [ ] Decidere se appiattire la struttura della directory
-- [ ] `git init` + primo commit con il template originale
-- [ ] Personalizzare `src/config.ts` (nome, bio, social)
-- [ ] Sostituire avatar/banner demo con asset a tema food
-- [ ] Aggiungere lingua `it` se non presente, oppure tenere `en`
-- [ ] Definire categorie/tag base del blog food (es. ricette, recensioni, ingredienti)
-- [ ] Eliminare post demo e creare il primo post reale
-- [ ] Configurare `site` URL in `astro.config.mjs` per il deploy
+- [ ] Inserire nome reale, bio e link social in `src/config.ts`
+- [ ] Sostituire avatar e banner demo (`src/assets/images/`)
+- [ ] Sostituire favicon (`public/favicon/`)
+- [ ] Riscrivere `src/content/spec/about.md` (Chi sono)
+- [ ] Eliminare i post demo Fuwari e creare il primo articolo di recensione
+- [ ] Definire categorie/tag (es. *cucina italiana*, *brunch*, *pizzeria*, *fine dining*, *dolci*, *vegetariano*…)
+- [ ] Configurare `site` URL definitivo in `astro.config.mjs` prima del deploy
+- [ ] `pnpm install` e prima esecuzione di `pnpm dev` per verificare che il setup giri
+- [ ] Considerare uno schema custom per le recensioni (rating, indirizzo, prezzo medio) in `src/content/config.ts`

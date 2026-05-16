@@ -3,6 +3,7 @@ import type I18nKey from "./i18nKey";
 import { en } from "./languages/en";
 import { es } from "./languages/es";
 import { id } from "./languages/id";
+import { it } from "./languages/it";
 import { ja } from "./languages/ja";
 import { ko } from "./languages/ko";
 import { th } from "./languages/th";
@@ -34,6 +35,8 @@ const map: { [key: string]: Translation } = {
 	vi: vi,
 	vi_vn: vi,
 	id: id,
+	it: it,
+	it_it: it,
 	tr: tr,
 	tr_tr: tr,
 };
