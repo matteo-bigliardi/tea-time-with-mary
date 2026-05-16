@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"fuwari-main\\\\fuwari-main\" -Force | ForEach-Object { \"$\\($_.Mode\\) $\\($_.Name\\)\" })"
+    ]
+  }
+}
