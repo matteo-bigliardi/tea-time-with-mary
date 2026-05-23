@@ -1,0 +1,172 @@
+# ─────────────────────────────────────────────────────────────
+# Sveltia CMS — configurazione per Tea Time with Mary
+# ─────────────────────────────────────────────────────────────
+
+backend:
+  name: github
+  repo: matteo-bigliardi/tea-time-with-mary
+  branch: main
+  # Sveltia gestisce l'OAuth via il proprio bridge hosted; per attivarlo
+  # serve creare una GitHub OAuth App e impostare qui sotto `client_id`.
+  # Vedi sezione "Setup OAuth GitHub" nelle istruzioni che ti ho mandato.
+  # client_id: <DA RIEMPIRE DOPO AVER CREATO L'OAUTH APP>
+
+# Locale dell'interfaccia (Sveltia ha localizzazioni; "it" se supportato,
+# altrimenti fallback a "en").
+locale: it
+
+# URL del sito (mostrato come link "View on Site" nel CMS).
+site_url: https://teatimewithmary.vercel.app
+display_url: https://teatimewithmary.vercel.app
+logo_url: /favicon/favicon-192.png
+
+# Le immagini caricate dal CMS finiscono qui (cartella servita staticamente
+# da Astro). Path pubblico = quello che viene scritto nel frontmatter `image:`.
+media_folder: public/uploads
+public_folder: /uploads
+
+# Slug auto-generati dal titolo: tutto minuscolo, senza accenti, separati da -.
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# Messaggi di commit personalizzati (più leggibili nella git history).
+commit_messages:
+  create: 'post: nuovo "{{slug}}"'
+  update: 'post: aggiornato "{{slug}}"'
+  delete: 'post: rimosso "{{slug}}"'
+  uploadMedia: 'media: caricato "{{path}}"'
+  deleteMedia: 'media: rimosso "{{path}}"'
+
+# ─────────────────────────────────────────────────────────────
+# Collezioni
+# ─────────────────────────────────────────────────────────────
+
+collections:
+  - name: posts
+    label: Recensioni
+    label_singular: Recensione
+    folder: src/content/posts
+    create: true
+    delete: true
+    extension: md
+    format: yaml-frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}} — {{rating}}/5 ({{fields.published}})'
+    sortable_fields: ['published', 'title', 'rating']
+    view_filters:
+      - label: Solo pubblicate
+        field: draft
+        pattern: false
+      - label: Solo bozze
+        field: draft
+        pattern: true
+
+    fields:
+      - label: Titolo
+        name: title
+        widget: string
+        hint: "Esempio: 'Saloon Bar — la pizza al tegamino che non scorderò'"
+
+      - label: Pubblicato il
+        name: published
+        widget: datetime
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        format: 'YYYY-MM-DD'
+        picker_utc: false
+        required: true
+
+      - label: Descrizione breve
+        name: description
+        widget: text
+        required: false
+        hint: "Una frase che riassuma la recensione. Appare in archivio e nelle preview social."
+
+      - label: Cover image
+        name: image
+        widget: image
+        required: false
+        choose_url: false
+        media_library:
+          config:
+            multiple: false
+        hint: "Foto del piatto o del locale. Verrà ridimensionata automaticamente."
+
+      - label: Tag
+        name: tags
+        widget: select
+        multiple: true
+        min: 0
+        max: 5
+        required: false
+        options:
+          - Breakfast
+          - Brunch
+          - Pizza
+          - Fast Food
+          - Ethnic Cuisine
+          - Fine Dining
+          - Gelato
+          - Aperitivo
+          - Hamburger
+          - Tea House
+        default: []
+        hint: "Da 0 a 5 tag. Aggiungere voci richiede aggiornamento del codice (src/constants/tags.ts)."
+
+      - label: Categoria
+        name: category
+        widget: string
+        default: Recensioni
+        required: false
+
+      - label: Bozza (non pubblicare)
+        name: draft
+        widget: boolean
+        default: false
+        required: false
+        hint: "Spunta per salvare senza pubblicare. Quando togli la spunta e salvi, il post va live entro 1-2 minuti."
+
+      - label: Valutazione (0-5 con mezzi voti)
+        name: rating
+        widget: number
+        value_type: float
+        min: 0
+        max: 5
+        step: 0.5
+        required: false
+        hint: "Es. 3.5, 4, 4.5. Lascia vuoto se il post non è una recensione."
+
+      - label: Fascia di prezzo
+        name: priceRange
+        widget: select
+        options:
+          - '$'
+          - '$$'
+          - '$$$'
+          - '$$$$'
+        required: false
+        hint: "$ = economico  →  $$$$ = fine dining."
+
+      - label: Google Maps URL
+        name: mapsUrl
+        widget: string
+        required: false
+        pattern: ['^https://(maps\.app\.goo\.gl|www\.google\..*?/maps).*', 'Inserisci un link Google Maps valido (https://maps.app.goo.gl/...)']
+        hint: "Apri il locale su Google Maps → 'Condividi' → copia il link."
+
+      - label: Data della visita
+        name: visitedOn
+        widget: datetime
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        format: 'YYYY-MM-DD'
+        picker_utc: false
+        required: false
+        hint: "La data in cui sei andata al locale (diversa dalla data di pubblicazione)."
+
+      - label: Corpo del post
+        name: body
+        widget: markdown
+        hint: "Struttura suggerita: apertura narrativa → ## Il posto → ## Il conto → ## Note (vedi src/content/posts/_template.md per il canon)."
