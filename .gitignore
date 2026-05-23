@@ -31,3 +31,7 @@ pnpm-debug.log*
 
 # astro
 .astro/
+
+# documentazione interna / note di lavoro Claude Code (resta locale, non pubblica)
+.claude/
+TODO.md
