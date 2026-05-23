@@ -12,6 +12,12 @@ const postsCollection = defineCollection({
 		category: z.string().optional().nullable().default(""),
 		lang: z.string().optional().default(""),
 
+		/* Campi specifici per le recensioni di ristoranti (tutti opzionali) */
+		rating: z.number().min(0).max(5).multipleOf(0.5).optional(),
+		priceRange: z.enum(["$", "$$", "$$$", "$$$$"]).optional(),
+		mapsUrl: z.string().url().optional(),
+		visitedOn: z.date().optional(),
+
 		/* For internal use */
 		prevTitle: z.string().default(""),
 		prevSlug: z.string().default(""),

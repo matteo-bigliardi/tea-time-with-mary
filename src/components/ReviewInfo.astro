@@ -1,0 +1,96 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	rating?: number;
+	priceRange?: "$" | "$$" | "$$$" | "$$$$";
+	mapsUrl?: string;
+	visitedOn?: Date;
+	class?: string;
+}
+
+const { rating, priceRange, mapsUrl, visitedOn, class: className = "" } = Astro.props;
+
+const hasAny =
+	rating !== undefined || !!priceRange || !!mapsUrl || !!visitedOn;
+
+const priceLevel = priceRange?.length ?? 0;
+const ratingPercent = rating !== undefined ? (rating / 5) * 100 : 0;
+
+const visitedFmt = visitedOn
+	? visitedOn.toLocaleDateString("it-IT", {
+			day: "numeric",
+			month: "long",
+			year: "numeric",
+		})
+	: null;
+---
+
+{hasAny && (
+	<div class:list={[
+		"review-info onload-animation flex flex-wrap items-center gap-x-6 gap-y-3 rounded-xl border border-[var(--line-divider)] bg-black/[0.025] dark:bg-white/[0.04] px-5 py-4",
+		className,
+	]}>
+		{rating !== undefined && (
+			<div class="flex items-center gap-2">
+				<div
+					class="relative inline-block text-[1.5rem] leading-none"
+					aria-label={`Voto ${rating} su 5`}
+					title={`Voto ${rating} su 5`}
+				>
+					<div class="flex text-black/15 dark:text-white/20">
+						<Icon name="material-symbols:local-pizza" class="shrink-0" />
+						<Icon name="material-symbols:local-pizza" class="shrink-0" />
+						<Icon name="material-symbols:local-pizza" class="shrink-0" />
+						<Icon name="material-symbols:local-pizza" class="shrink-0" />
+						<Icon name="material-symbols:local-pizza" class="shrink-0" />
+					</div>
+					<div
+						class="absolute left-0 top-0 flex overflow-hidden text-[var(--primary)]"
+						style={`width: ${ratingPercent}%`}
+					>
+						<Icon name="material-symbols:local-pizza" class="shrink-0" />
+						<Icon name="material-symbols:local-pizza" class="shrink-0" />
+						<Icon name="material-symbols:local-pizza" class="shrink-0" />
+						<Icon name="material-symbols:local-pizza" class="shrink-0" />
+						<Icon name="material-symbols:local-pizza" class="shrink-0" />
+					</div>
+				</div>
+				<span class="text-sm font-bold text-black/60 dark:text-white/60">
+					{rating} / 5
+				</span>
+			</div>
+		)}
+
+		{priceRange && (
+			<div
+				class="flex items-center gap-0.5 text-xl font-bold leading-none"
+				aria-label={`Fascia di prezzo: ${priceRange}`}
+				title={`Fascia di prezzo: ${priceRange}`}
+			>
+				{[1, 2, 3, 4].map((i) => (
+					<span class={i <= priceLevel ? "text-[var(--primary)]" : "text-black/15 dark:text-white/20"}>$</span>
+				))}
+			</div>
+		)}
+
+		{visitedFmt && (
+			<div class="flex items-center gap-2 text-sm text-black/60 dark:text-white/60">
+				<Icon name="material-symbols:calendar-month-outline-rounded" class="text-lg" />
+				<span>Visitato il {visitedFmt}</span>
+			</div>
+		)}
+
+		{mapsUrl && (
+			<a
+				href={mapsUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="ml-auto flex items-center gap-2 rounded-lg border border-[var(--primary)] px-3 py-1.5 text-sm font-bold text-[var(--primary)] transition hover:bg-[var(--primary)] hover:text-white"
+			>
+				<Icon name="material-symbols:location-on-outline-rounded" class="text-lg" />
+				<span>Apri in Google Maps</span>
+			</a>
+		)}
+	</div>
+)}

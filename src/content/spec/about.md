@@ -1,9 +1,23 @@
-# About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+# Chi sono
 
-::github{repo="saicaca/fuwari"}
+Ciao, sono **Mara** e questo è il mio piccolo angolo goloso su internet.
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+Tutto nasce come un hobby — quaderni pieni di appunti dopo ogni cena fuori, foto sgranate scattate prima di affondare la forchetta, voti dati a bassa voce al tavolo. A un certo punto mi sono detta: tanto vale scriverli da qualche parte.
+
+## Una *picky eater* che ama la buona cucina
+
+Lo so, suona contraddittorio. Sono schizzinosa, ho i miei dettagli, e proprio per questo ho imparato a riconoscere quando una cucina è fatta con cura, quando un piatto è semplicemente *giusto*. Non mi accontento, e questo mi rende attentissima ai particolari: la temperatura, l'equilibrio dei sapori, la mano del servizio, l'atmosfera della sala.
+
+## Cosa trovi qui
+
+Recensioni sincere dei ristoranti che provo — quelli che mi hanno conquistata, quelli da rivisitare, le delusioni che racconto con dolcezza ma senza tirarmi indietro. Tratto trattorie di quartiere e fine dining con lo stesso rispetto: per me la cura è la cura, ovunque.
+
+Niente sponsorizzazioni nascoste, niente piatti offerti dalla cucina. Pago, mangio, racconto.
+
+Grazie di essere qui.
+
+— *Mara*
+
+---
+
+*Tea Time with Mary è un blog personale e indipendente. Le recensioni non sono sponsorizzate né frutto di collaborazioni retribuite: ogni conto è pagato di tasca propria.*

@@ -8,8 +8,8 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "Tavola Rosa",
-	subtitle: "Recensioni di ristoranti, con dolcezza",
+	title: "Tea Time with Mary",
+	subtitle: "Recensioni di una picky eater incurabile",
 	lang: "it",
 	themeColor: {
 		hue: 340, // rosa cipria
@@ -29,7 +29,12 @@ export const siteConfig: SiteConfig = {
 		enable: true,
 		depth: 2,
 	},
-	favicon: [],
+	favicon: [
+		{ src: "/favicon/favicon-32.png", sizes: "32x32" },
+		{ src: "/favicon/favicon-128.png", sizes: "128x128" },
+		{ src: "/favicon/favicon-180.png", sizes: "180x180" },
+		{ src: "/favicon/favicon-192.png", sizes: "192x192" },
+	],
 };
 
 export const navBarConfig: NavBarConfig = {
@@ -41,25 +46,20 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/demo-avatar.png",
-	name: "Il tuo nome",
-	bio: "Racconto i ristoranti che provo, tra atmosfera, piatti e piccoli dettagli che fanno la differenza.",
+	avatar: "assets/images/avatar.png",
+	name: "Mara",
+	bio: "Picky eater incurabile a passeggio tra ristoranti, trattorie e pasticcerie. Recensioni sincere, senza filtri e senza sponsorizzazioni.",
 	links: [
 		{
 			name: "Instagram",
 			icon: "fa6-brands:instagram",
-			url: "https://instagram.com",
-		},
-		{
-			name: "TikTok",
-			icon: "fa6-brands:tiktok",
-			url: "https://tiktok.com",
+			url: "https://instagram.com/teatimewithmary",
 		},
 	],
 };
 
 export const licenseConfig: LicenseConfig = {
-	enable: true,
+	enable: false,
 	name: "CC BY-NC-SA 4.0",
 	url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
 };
