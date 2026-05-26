@@ -3,7 +3,7 @@ title: Cacio e Pepe — la cena del perdono e la mia guerra con gli spaghetti
 published: 2019-11-11
 description: Cucina romana per rimediare a un piccolo malinteso sul "primo appuntamento ufficiale". Buonissimo — peccato per la mia eterna, goffa lotta con la pasta lunga.
 image: /images/cacioepepe.jpg
-tags: []
+tags: [Cucina Italiana]
 category: Recensioni
 draft: false
 rating: 4

@@ -112,6 +112,7 @@ collections:
           - Aperitivo
           - Hamburger
           - Tea House
+          - Cucina Italiana
         default: []
         hint: "Da 0 a 5 tag. Aggiungere voci richiede aggiornamento del codice (src/constants/tags.ts)."
 

@@ -24,6 +24,7 @@ export const CANONICAL_TAGS = [
 	"Aperitivo",
 	"Hamburger",
 	"Tea House",
+	"Cucina Italiana",
 ] as const;
 
 export type CanonicalTag = (typeof CANONICAL_TAGS)[number];
