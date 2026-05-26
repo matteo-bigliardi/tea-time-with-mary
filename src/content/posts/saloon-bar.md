@@ -2,8 +2,8 @@
 title: Saloon Bar — la pizza al tegamino che non scorderò
 published: 2026-05-21
 description: Una pizza al tegamino che mi ha conquistata, un conto che sembra fermo a dieci anni fa e un'atmosfera che sa di altri tempi. Andate, finché potete.
-image: ''
-tags: [Pizza, Pizza al tegamino, Pizzeria]
+image: /images/saloonbar.jpg
+tags: [Pizza]
 category: Recensioni
 draft: false
 rating: 4.5
